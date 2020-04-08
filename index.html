@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pricecalculater</title>
+    <style>
+        body,.jumbotron{
+            padding: 33px;
+        }
+        .text-gaint{
+            font-size: 40px;
+        }
+    
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="jumbotron">
+        <h2>How much do price cost?</h2>
+        <form >
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" name="price" value="">
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity
+                    <span class="label label-primary quantity-label">1</span>
+                </label>
+                <input type="range" class="form-control"  name="quantity" value="1" min="1" max="100" step="1">
+            </div>
+        </form>
+        <div class="text-right text-gaint total"></div>
+        <div class="form-group"><small class="tex-right">Coded By Nabaraj Rai</small></div>
+    </div>
+
+    <script>
+        //grab all thing what we need
+        const priceInput=document.querySelector('[name=price]');
+        const quantityInput=document.querySelector('[name=quantity]');
+        const total=document.querySelector('.total');
+        const quantityLabel=document.querySelector('.quantity-label');
+       //focus input field
+        priceInput.focus();
+        //create function for work
+            function handlePrice(){
+              const  price=priceInput.value;
+               const quantity=quantityInput.value;
+               const cost=price*quantity;
+                total.innerText= '$'  +cost.toFixed(2);
+            }
+            function updateQuantity(){
+            const quantity=quantityInput.value;
+            console.log(quantity);
+            quantityLabel.innerText=quantity;
+
+            }
+            //on first run
+            handlePrice();
+            
+        //add eventlistner
+            priceInput.addEventListener('input',handlePrice);
+            quantityInput.addEventListener('input',handlePrice);
+
+            quantityInput.addEventListener('input',updateQuantity)
+
+    </script>
+
+</body>
+</html>
